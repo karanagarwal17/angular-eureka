@@ -28,6 +28,38 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+            dist: {
+                cwd: 'app',
+                src: ['**', '!styles/**/*.css', '!scripts/**/*.js'],
+                dest: 'dist',
+                expand: true
+            },
+
+            fonts: {
+                files: [{
+                    //for bootstrap fonts
+                    expand: true,
+                    dot: true,
+                    cwd: 'bower_components/bootstrap/dist',
+                    src: ['fonts/*.*'],
+                    dest: 'dist'
+                }, {
+                    //for font-awesome
+                    expand: true,
+                    dot: true,
+                    cwd: 'bower_components/font-awesome',
+                    src: ['fonts/*.*'],
+                    dest: 'dist'
+                }]
+            }
+        },
+
+        clean: {
+            build: {
+                src: ['dist/']
+            }
+        },
         useminPrepare: {
             html: 'app/menu.html',
             options: {
@@ -86,50 +118,18 @@ module.exports = function(grunt) {
                 assetsDirs: ['dist', 'dist/styles']
             }
         },
-        copy: {
-            dist: {
-                cwd: 'app',
-                src: ['**', '!styles/**/*.css', '!scripts/**/*.js'],
-                dest: 'dist',
-                expand: true
-            },
-
-            fonts: {
-                files: [{
-                    //for bootstrap fonts
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/bootstrap/dist',
-                    src: ['fonts/*.*'],
-                    dest: 'dist'
-                }, {
-                    //for font-awesome
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/font-awesome',
-                    src: ['fonts/*.*'],
-                    dest: 'dist'
-                }]
-            }
-        },
-
-        clean: {
-            build: {
-                src: ['dist/']
-            }
-        }
     });
 
     grunt.registerTask('build', [
-      'clean',
-      'jshint',
-      'useminPrepare',
-      'concat',
-      'cssmin',
-      'uglify',
-      'copy',
-      'filerev',
-      'usemin'
+        'clean',
+        'jshint',
+        'useminPrepare',
+        'concat',
+        'cssmin',
+        'uglify',
+        'copy',
+        'filerev',
+        'usemin'
     ]);
 
     grunt.registerTask('default', ['build']);
