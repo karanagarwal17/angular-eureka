@@ -44,17 +44,17 @@ angular.module('confusionApp', ['ui.router'])
 			url: 'menu',
 			views: {
 				'content@': {
-					templateUrl: 'views/menu.html'
+					templateUrl: 'views/menu.html',
 					controller: 'MenuController'
 				}
 			}
 		})
 
-		.state('app.menu', {
+		.state('app.dishdetails', {
 			url: 'menu/:id',
 			views: {
-				'contect@': {
-					templateUrl: 'views/menu.html',
+				'content@': {
+					templateUrl: 'views/dishdetail.html',
 					controller: 'DishDetailController'
 				}
 			}
